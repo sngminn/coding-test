@@ -1,16 +1,12 @@
 function twoSum(nums: number[], target: number): number[] {
-    const numsMap = new Map();
-    let ans = [0, 0];
-
-    nums.forEach((num, ind) => numsMap.set(num, ind));
+    const map = new Map();
 
     for(let i = 0; i < nums.length; i++) {
-        const sec = Number(numsMap.get(target-nums[i]) || -1);
-        if (sec !== -1 && sec !== i){
-            ans = [i, Number(sec)];
-            break;
-        }
+        const mate = target - nums[i];
+        
+        if (map.has(mate)) return [map.get(mate), i];
+        map.set(nums[i], i);
     }
 
-    return ans;
+    return [];
 };
